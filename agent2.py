@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 MODEL_PATH = os.path.join(BASE_PATH, "agent2_model.h5")
@@ -85,4 +85,5 @@ if __name__ == "__main__":
     test_image = r"C:\Users\karth\OneDrive\Desktop\test_leaf.jpg"
     out = run_agent2(test_image)
     print("Agent-2 Output:", out)
+
 
