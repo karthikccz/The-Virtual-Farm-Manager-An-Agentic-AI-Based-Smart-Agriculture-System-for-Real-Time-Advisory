@@ -6,7 +6,10 @@ import cv2
 import os
 from typing import Optional
 
-MODEL_PATH = r"C:\Users\karth\OneDrive\Desktop\major_test\field_model\best.pt"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "best.pt")
+
 
 _model = None
 
@@ -74,3 +77,4 @@ if __name__ == "__main__":
         save_annotated="agent1_output.jpg"
     )
     print("Agent-1 Output:", output)
+
