@@ -5,7 +5,7 @@ from prophet import Prophet
 # -------------------------------------------------
 # CONFIG
 # -------------------------------------------------
-FALLBACK_CSV = r"C:\Users\karth\Downloads\Daily Price.csv"
+FALLBACK_CSV = r"Daily Price (1).csv"
 
 # -------------------------------------------------
 # LIVE MANDI FETCH (BEST-EFFORT)
