@@ -8,7 +8,7 @@ from prophet import Prophet
 # DATASET PATH
 # ------------------------------------------------
 
-DATASET_PATH = r"C:\Users\karth\Desktop\MAJOR\telangana_mandi_prices_dataset.csv"
+DATASET_PATH = r"telangana_mandi_prices_dataset.csv"
 
 
 # ------------------------------------------------
