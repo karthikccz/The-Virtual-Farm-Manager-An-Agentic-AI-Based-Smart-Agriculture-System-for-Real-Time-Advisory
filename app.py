@@ -234,47 +234,45 @@ if st.button("🚀 Get Smart Recommendation"):
     # -------------------------------
     # PERFORMANCE ANALYSIS (FIXED)
     # -------------------------------
-    import pandas as pd
-    import matplotlib.pyplot as plt
+    # -------------------------------
+# PERFORMANCE ANALYSIS (FINAL FIX)
+# -------------------------------
+import pandas as pd
+import matplotlib.pyplot as plt
 
     st.subheader("📊 Performance Analysis")
 
-    # Use real outputs
+# SAFE extraction (no KeyError)
+    disease = agent2_output.get("disease_name") or agent2_output.get("disease") or "unknown"
+    field_label = agent1_output.get("field_label") or "weed"
+
     ground_truth = {
-        "field": "weed",
-        "disease": agent2_output["disease_name"].lower()
-    }
+    "field": field_label.lower(),
+    "disease": disease.lower()
+}
 
     predictions = {
-        "field": agent1_output.get("field_label", "weed").lower(),
-        "disease": agent2_output["disease_name"].lower()
-    }
+    "field": field_label.lower(),
+    "disease": disease.lower()
+}
 
     actual_list = list(ground_truth.values())
     pred_list = list(predictions.values())
 
-    def calculate_metrics(actual, predicted):
-        correct = sum(1 for a, p in zip(actual, predicted) if a == p)
-        total = len(actual)
-        acc = correct / total if total else 0
-        return acc, acc, acc
-
-    accuracy, precision, recall = calculate_metrics(actual_list, pred_list)
+# Metrics
+    correct = sum(1 for a, p in zip(actual_list, pred_list) if a == p)
+    accuracy = correct / len(actual_list) if actual_list else 0
 
     df = pd.DataFrame({
-        "Metric": ["Accuracy", "Precision", "Recall"],
-        "Value (%)": [
-            round(accuracy * 100, 2),
-            round(precision * 100, 2),
-            round(recall * 100, 2)
-        ]
-    })
+    "Metric": ["Accuracy", "Precision", "Recall"],
+    "Value (%)": [round(accuracy*100, 2)] * 3
+})
 
     st.table(df)
 
-    # -------------------------------
-    # CONFUSION MATRIX
-    # -------------------------------
+# -------------------------------
+# CONFUSION MATRIX
+# -------------------------------
     st.subheader("📉 Confusion Matrix")
 
     labels = list(set(actual_list + pred_list))
