@@ -9,7 +9,8 @@ ultralytics
 torch
 torchvision
 
-opencv-python-headless
+opencv-python-headless==4.9.0.80
+ultralytics
 pandas
 prophet
 cmdstanpy
