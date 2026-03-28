@@ -5,6 +5,7 @@ from ultralytics import YOLO
 import cv2
 import os
 from typing import Optional
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
