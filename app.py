@@ -231,59 +231,10 @@ if st.button("🚀 Get Smart Recommendation"):
     "#e6fffa"
 )
 
-    # -------------------------------
-    # PERFORMANCE ANALYSIS (FIXED)
-    # -------------------------------
-    # -------------------------------
-# PERFORMANCE ANALYSIS (FINAL FIX)
-# -------------------------------
-    # -------------------------------
-    # PERFORMANCE ANALYSIS
-    # -------------------------------
-# -------------------------------
-# REALISTIC PERFORMANCE ANALYSIS
-# -------------------------------
-import pandas as pd
-import matplotlib.pyplot as plt
-
-st.subheader("📊 Performance Analysis")
-
-# Extract outputs safely
-pred_field = agent1_output.get("field_label", "weed").lower()
-pred_disease = (agent2_output.get("disease_name") 
-                or agent2_output.get("disease") 
-                or "unknown").lower()
-
-# Simulated expected (based on logic, not same as prediction)
-# 👉 this makes evaluation realistic
-expected_field = "weed" if "weed" in pred_field else "healthy"
-expected_disease = "healthy" if "healthy" in pred_disease else pred_disease
-
-actual = [expected_field, expected_disease]
-pred = [pred_field, pred_disease]
-
-# Metrics calculation
-tp = sum(1 for a, p in zip(actual, pred) if a == p)
-fp = sum(1 for a, p in zip(actual, pred) if a != p)
-fn = fp
-
-accuracy = tp / len(actual) if actual else 0
-precision = tp / (tp + fp) if (tp + fp) else 0
-recall = tp / (tp + fn) if (tp + fn) else 0
-
-df = pd.DataFrame({
-    "Metric": ["Accuracy", "Precision", "Recall"],
-    "Value (%)": [
-        round(accuracy * 100, 2),
-        round(precision * 100, 2),
-        round(recall * 100, 2)
-    ]
-})
-
-st.table(df)
+    
     # -------------------------------
     # CLEANUP (FIXED INDENTATION)
     # -------------------------------
-os.remove(field_path)
-os.remove(leaf_path)
-os.remove(annotated_path)
+    os.remove(field_path)
+    os.remove(leaf_path)
+    os.remove(annotated_path)
