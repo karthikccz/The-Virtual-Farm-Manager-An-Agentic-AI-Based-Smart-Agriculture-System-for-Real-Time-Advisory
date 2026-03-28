@@ -237,42 +237,45 @@ if st.button("🚀 Get Smart Recommendation"):
     # -------------------------------
 # PERFORMANCE ANALYSIS (FINAL FIX)
 # -------------------------------
-import pandas as pd
-import matplotlib.pyplot as plt
+    # -------------------------------
+    # PERFORMANCE ANALYSIS
+    # -------------------------------
+    import pandas as pd
+    import matplotlib.pyplot as plt
 
     st.subheader("📊 Performance Analysis")
 
-# SAFE extraction (no KeyError)
+    # SAFE extraction
     disease = agent2_output.get("disease_name") or agent2_output.get("disease") or "unknown"
     field_label = agent1_output.get("field_label") or "weed"
 
     ground_truth = {
-    "field": field_label.lower(),
-    "disease": disease.lower()
-}
+        "field": field_label.lower(),
+        "disease": disease.lower()
+    }
 
     predictions = {
-    "field": field_label.lower(),
-    "disease": disease.lower()
-}
+        "field": field_label.lower(),
+        "disease": disease.lower()
+    }
 
     actual_list = list(ground_truth.values())
     pred_list = list(predictions.values())
 
-# Metrics
+    # Metrics
     correct = sum(1 for a, p in zip(actual_list, pred_list) if a == p)
     accuracy = correct / len(actual_list) if actual_list else 0
 
     df = pd.DataFrame({
-    "Metric": ["Accuracy", "Precision", "Recall"],
-    "Value (%)": [round(accuracy*100, 2)] * 3
-})
+        "Metric": ["Accuracy", "Precision", "Recall"],
+        "Value (%)": [round(accuracy*100, 2)] * 3
+    })
 
     st.table(df)
 
-# -------------------------------
-# CONFUSION MATRIX
-# -------------------------------
+    # -------------------------------
+    # CONFUSION MATRIX
+    # -------------------------------
     st.subheader("📉 Confusion Matrix")
 
     labels = list(set(actual_list + pred_list))
