@@ -231,7 +231,103 @@ if st.button("🚀 Get Smart Recommendation"):
     "#e6fffa"
 )
 
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+# -------------------------------
+# Example: Replace with your agent outputs
+# -------------------------------
+
+# Agent outputs (from your system)
+agent1_output = {"field_label": "weed"}   # from agent1
+agent2_output = {"disease_name": "leaf_spot"}  # from agent2
+
+# Ground truth (for evaluation/demo)
+# 👉 Replace with actual labels if available
+ground_truth = {
+    "field": "weed",
+    "disease": "leaf_spot"
+}
+
+# Predictions
+predictions = {
+    "field": agent1_output["field_label"].lower(),
+    "disease": agent2_output["disease_name"].lower()
+}
+
+# -------------------------------
+# METRICS CALCULATION
+# -------------------------------
+
+def calculate_metrics(actual, predicted):
+    tp = sum(1 for a, p in zip(actual, predicted) if a == p)
+    total = len(actual)
+
+    accuracy = tp / total if total > 0 else 0
+    precision = tp / total if total > 0 else 0
+    recall = tp / total if total > 0 else 0
+
+    return accuracy, precision, recall
+
+
+actual_list = list(ground_truth.values())
+pred_list = list(predictions.values())
+
+accuracy, precision, recall = calculate_metrics(actual_list, pred_list)
+
+# -------------------------------
+# DISPLAY TABLE
+# -------------------------------
+
+st.subheader("📊 Performance Analysis")
+
+df = pd.DataFrame({
+    "Metric": ["Accuracy", "Precision", "Recall"],
+    "Value (%)": [
+        round(accuracy * 100, 2),
+        round(precision * 100, 2),
+        round(recall * 100, 2)
+    ]
+})
+
+st.table(df)
+
+# -------------------------------
+# CONFUSION MATRIX
+# -------------------------------
+
+st.subheader("📉 Confusion Matrix")
+
+labels = list(set(actual_list + pred_list))
+label_map = {label: i for i, label in enumerate(labels)}
+
+cm = np.zeros((len(labels), len(labels)), dtype=int)
+
+for a, p in zip(actual_list, pred_list):
+    cm[label_map[a]][label_map[p]] += 1
+
+fig, ax = plt.subplots()
+ax.imshow(cm, cmap="Blues")
+
+# Add values inside matrix
+for i in range(len(labels)):
+    for j in range(len(labels)):
+        ax.text(j, i, cm[i, j], ha="center", va="center", color="black")
+
+ax.set_xticks(range(len(labels)))
+ax.set_yticks(range(len(labels)))
+ax.set_xticklabels(labels)
+ax.set_yticklabels(labels)
+
+ax.set_xlabel("Predicted")
+ax.set_ylabel("Actual")
+ax.set_title("Confusion Matrix")
+
+st.pyplot(fig)
+
+    
 
 
     # Cleanup
