@@ -1,7 +1,7 @@
 import streamlit as st
 import tempfile
 import os
-import numpy
+import numpy as np
 import cv2
 
 from agent1 import run_agent1
