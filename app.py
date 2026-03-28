@@ -284,6 +284,6 @@ st.table(df)
     # -------------------------------
     # CLEANUP (FIXED INDENTATION)
     # -------------------------------
-    os.remove(field_path)
-    os.remove(leaf_path)
-    os.remove(annotated_path)
+os.remove(field_path)
+os.remove(leaf_path)
+os.remove(annotated_path)
