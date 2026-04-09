@@ -1,6 +1,5 @@
 import streamlit as st
 import tempfile
-import os
 import numpy as np
 import cv2
 
@@ -8,6 +7,9 @@ from agent1 import run_agent1
 from agent2 import run_agent2
 from agent3 import run_agent3
 from reco import recommendation_agent, get_weather
+
+import os
+os.environ["OPENCV_VIDEOIO_PRIORITY_MSMF"] = "0"
 
 def card(title, content, color="#f9f9f9"):
     st.markdown(
