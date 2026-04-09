@@ -7,6 +7,7 @@ pillow
 
 opencv-python-headless==4.7.0.72
 opencv-python==0.0.0
+rich==13.7.1
 torch==2.0.1
 torchvision==0.15.2
 ultralytics==8.0.196
