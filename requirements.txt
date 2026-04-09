@@ -1,5 +1,8 @@
 numpy==1.26.4
+
 opencv-python-headless==4.9.0.80
+opencv-python==0.0.0   
+
 ultralytics==8.2.0
 
 streamlit
